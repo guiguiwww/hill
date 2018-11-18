@@ -4,12 +4,10 @@ import com.hanwu.hill.entity.User;
 import com.hanwu.hill.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hanwu.hill.api.response.AbstractResponse;
 
-@Component(value="userResponse")
 public class UserResponse extends AbstractResponse{
 	
 	@Autowired
