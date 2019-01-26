@@ -19,7 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.hanwu.hill.listener.ApiMethodSelector;
 
 @WebFilter(filterName="CustomFilter",urlPatterns="/*")
-public class InitFilter implements Filter{
+public class ServletFilter implements Filter{
     
 	private ApiMethodSelector methodSelector;
 	
@@ -29,6 +29,7 @@ public class InitFilter implements Filter{
         ServletContext servletContext = filterConfig.getServletContext();
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
         this.methodSelector = context.getBean(ApiMethodSelector.class);
+        
         
     }
 

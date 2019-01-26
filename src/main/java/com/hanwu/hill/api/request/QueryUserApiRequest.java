@@ -7,7 +7,7 @@ public class QueryUserApiRequest extends ApiRequest{
 	private int id;
 	
 	public int getId(){
-		return this.id;
+		return id;
 	}
 	
 	public void setId(int id){

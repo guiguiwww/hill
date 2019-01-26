@@ -3,6 +3,7 @@ package com.hanwu.hill.api.impl;
 import com.hanwu.hill.api.UserApi;
 import com.hanwu.hill.entity.User;
 import com.hanwu.hill.service.UserService;
+import com.hanwu.hill.api.request.ApiRequest;
 import com.hanwu.hill.api.response.impl.UserResponse;
 import com.hanwu.hill.annotation.Api;
 import com.hanwu.hill.annotation.ApiMapping;
@@ -29,7 +30,7 @@ public class UserApiImpl implements UserApi{
 	@ApiMapping
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/add", produces = {"application/json;charset=UTF-8"})
-	public Object addUser(@RequestBody Object request, User user) {
+	public Object addUser(ApiRequest hello, @RequestBody Object request, User user) {
 		return userResponse.addResponse(request, user);
 	}
 
