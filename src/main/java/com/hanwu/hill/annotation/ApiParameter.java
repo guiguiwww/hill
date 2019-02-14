@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * ApiParameter annotation
  * <p>
- * author: stefan
+ * author: Stefan
  */
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ApiParameter {
 
-    public String value() default "";
+    String value() default "";
 
-    public boolean required() default false;
+    boolean required() default false;
 }

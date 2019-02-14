@@ -7,6 +7,7 @@ import com.hanwu.hill.api.request.ApiRequest;
 import com.hanwu.hill.api.response.impl.UserResponse;
 import com.hanwu.hill.entity.User;
 import com.hanwu.hill.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,15 +27,13 @@ public class UserApiImpl implements UserApi {
     private UserResponse userResponse;
 
     @Override
-    @ApiMapping
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/add", produces = {"application/json;charset=UTF-8"})
-    public Object addUser(ApiRequest hello, @RequestBody Object request, User user) {
+    public Object addUser(@RequestBody Object request, User user) {
         return userResponse.addResponse(request, user);
     }
 
     @Override
-    @ApiMapping
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/query", produces = {"application/json;charset=UTF-8"})
     public Object findUserById(@RequestBody Object request) {
@@ -42,8 +41,10 @@ public class UserApiImpl implements UserApi {
         return userResponse.queryResponse(request);
     }
 
-    public void test() {
-
+    @ApiMapping
+    @RequestMapping(method = RequestMethod.POST, value = "/test", produces = {"application/json;charset=UTF-8"})
+    public String test(ApiRequest hello) {
+        return "hello world";
     }
 
 }

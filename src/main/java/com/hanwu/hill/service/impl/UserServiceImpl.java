@@ -6,7 +6,7 @@ import com.hanwu.hill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service(value = "userSerive")
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired

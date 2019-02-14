@@ -1,21 +1,26 @@
 package com.hanwu.hill.listener;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.hanwu.hill.annotation.Api;
 import com.hanwu.hill.annotation.ApiMapping;
+import com.hanwu.hill.annotation.ApiParameter;
 import com.hanwu.hill.api.request.ApiRequest;
+import com.hanwu.hill.exception.ApiException;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+public class ApiMethodSelector implements ApplicationListener<ContextRefreshedEvent> {
 
-public class ApiMethodSelector implements
-        ApplicationListener<ContextRefreshedEvent> {
-
-    private static Map<String, Object> apiMap = new ConcurrentHashMap<String, Object>();
+    public static Map<String, ApiMethod<?>> methodMap = new ConcurrentHashMap<>();
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -28,31 +33,55 @@ public class ApiMethodSelector implements
         System.out.println("ApiMethodSelector finish ........");
     }
 
-    private <T extends ApiRequest> void analyseBean(String entryKey,
-                                                    Object entryValue) {
-        Method[] methods = entryValue.getClass().getDeclaredMethods();
+    private <T extends ApiRequest> void analyseBean(String beanName, Object beanValue) {
+        Method[] methods = beanValue.getClass().getDeclaredMethods();
+        System.out.println(String.format("begin to analyse bean %s ........", beanName));
         for (Method method : methods) {
-            Annotation annotation = method.getDeclaredAnnotation(ApiMapping.class);
-            if (null != annotation) {
+            ApiMapping apiMapping = method.getDeclaredAnnotation(ApiMapping.class);
+            if (null == apiMapping) {
                 continue;
             }
-            Class<?>[] paramList = method.getParameterTypes();
-            if (paramList.length > 1) {
-                throw new ApiException();
+            String action = apiMapping.value();
+            if (StringUtils.isEmpty(action)) {
+                action = StringUtils.capitalize(method.getName());
             }
-
-//			Class<T> param = (Class<T>) paramList[0];
-
-            // for(Class<?> param: method.getParameterTypes()){
-            // if(param.getName().equals(ApiRequest.class.getName())){
-            // System.out.println("jing jing");
-            // }
-            // }
-
+            Class<?>[] paramList = method.getParameterTypes();
+            if (paramList.length < 1) {
+                throw new ApiException("Parameter error, no ApiRequest init.");
+            }
+            if (paramList.length > 1) {
+                throw new ApiException("Parameter count error, only api parameter allowed in method.");
+            }
+            
+            @SuppressWarnings("unchecked")
+            Class<T> parameterType = (Class<T>) paramList[0];
+            List<ApiField> fieldList = getApiRequestFieldsByType(parameterType);
+            ApiMethod<T> apiMethod = new ApiMethod<>(action, method, parameterType, fieldList);
+            methodMap.put(action, apiMethod);
         }
     }
 
-}
+    private <T extends ApiRequest> List<ApiField> getApiRequestFieldsByType(Class<T> parameterType) {
+        List<ApiField> paramList = new ArrayList<>();
+        Field[] fields = parameterType.getDeclaredFields();
+        for (Field field : fields) {
+            paramList.add(convertToApiField(field));
+        }
+        return paramList;
+    }
 
-class ApiException extends RuntimeException {
+    private static ApiField convertToApiField(Field field) {
+        String fieldName = field.getName();
+        ApiParameter apiParameter = field.getAnnotation(ApiParameter.class);
+        if (apiParameter == null) {
+            return new ApiField(StringUtils.capitalize(fieldName), fieldName, field.getType());
+        }
+        String paramName = apiParameter.value();
+        if (StringUtils.isEmpty(paramName)) {
+            paramName = StringUtils.capitalize(field.getName());
+        }
+        boolean required = apiParameter.required();
+        return new ApiField(required, paramName, fieldName, field.getType());
+    }
+
 }

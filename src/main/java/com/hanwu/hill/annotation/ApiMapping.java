@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * ApiMapping annotation
  * <p>
- * author: stefan
+ * author: Stefan
  */
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -13,5 +13,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface ApiMapping {
 
-    public String value() default "";
+    String value() default "";
 }
