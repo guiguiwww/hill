@@ -2,17 +2,17 @@ package com.hanwu.hill.api.request;
 
 public class QueryUserApiRequest extends ApiRequest {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private int id;
+	private int id;
 
-    public int getId() {
+	public int getId() {
 
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(int id) {
+	public void setId(int id) {
 
-        this.id = id;
-    }
+		this.id = id;
+	}
 }

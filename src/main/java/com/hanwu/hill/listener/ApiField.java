@@ -10,17 +10,17 @@ public class ApiField {
 
     private String fieldName;
 
-    private Class fieldType;
+    private Class<?> fieldType;
 
     private Method initMethod;
 
-    public ApiField(String paramName, String fieldName, Class fieldType){
+    public ApiField(String paramName, String fieldName, Class<?> fieldType){
         this.paramName = paramName;
         this.fieldName = fieldName;
         this.fieldType = fieldType;
     }
 
-    public ApiField(boolean required, String paramName, String fieldName, Class fieldType) {
+    public ApiField(boolean required, String paramName, String fieldName, Class<?> fieldType) {
         this(paramName, fieldName, fieldType);
         ApiField.required = required;
     }
@@ -37,7 +37,7 @@ public class ApiField {
         return fieldName;
     }
 
-    public Class getFieldType() {
+    public Class<?> getFieldType() {
         return fieldType;
     }
 

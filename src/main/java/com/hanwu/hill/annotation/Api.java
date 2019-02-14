@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 
 /**
  * Api annotation
- * <p>
  * author: Stefan
  */
 
@@ -16,4 +15,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Documented
 public @interface Api {
+    public String value() default "";
 }

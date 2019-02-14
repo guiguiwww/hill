@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.hanwu.hill.api.request.ApiRequest;
 
+
 public class ApiMethod<T extends ApiRequest> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,4 +57,5 @@ public class ApiMethod<T extends ApiRequest> implements Serializable {
     public void setParamFieldList(List<ApiField> paramFieldList) {
         this.paramFieldList = paramFieldList;
     }
+
 }

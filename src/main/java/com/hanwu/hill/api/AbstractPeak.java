@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/index")
 public class AbstractPeak {
 
-    @ResponseBody
-    @RequestMapping(produces = {"application/json;charset=UTF-8"})
-    public Object peak() {
+	@ResponseBody
+	@RequestMapping(produces = { "application/json;charset=UTF-8" })
+	public Object peak() {
 
-        return JSONObject.parse("{'exception': false, 'msg': 'Hello hill'}");
-    }
+		return JSONObject.parse("{'exception': false, 'msg': 'Hello hill'}");
+	}
 }

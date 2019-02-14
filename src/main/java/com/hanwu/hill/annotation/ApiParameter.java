@@ -4,7 +4,6 @@ import java.lang.annotation.*;
 
 /**
  * ApiParameter annotation
- * <p>
  * author: Stefan
  */
 
@@ -13,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ApiParameter {
 
-    String value() default "";
+    public String value() default "";
 
-    boolean required() default false;
+    public boolean required() default false;
 }

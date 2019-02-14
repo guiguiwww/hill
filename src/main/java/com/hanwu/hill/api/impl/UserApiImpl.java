@@ -27,13 +27,15 @@ public class UserApiImpl implements UserApi {
     private UserResponse userResponse;
 
     @Override
+    @ApiMapping
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/add", produces = {"application/json;charset=UTF-8"})
-    public Object addUser(@RequestBody Object request, User user) {
+    public Object addUser(ApiRequest hello, @RequestBody Object request, User user) {
         return userResponse.addResponse(request, user);
     }
 
     @Override
+    @ApiMapping
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/query", produces = {"application/json;charset=UTF-8"})
     public Object findUserById(@RequestBody Object request) {

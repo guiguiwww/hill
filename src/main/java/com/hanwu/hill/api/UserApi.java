@@ -5,10 +5,8 @@ import com.hanwu.hill.entity.User;
 
 public interface UserApi {
 
-//	Object addUser(Object request, User user);
+	Object findUserById(Object request);
 
-    Object findUserById(Object request);
-
-    Object addUser(Object request, User user);
+	Object addUser(ApiRequest hello, Object request, User user);
 
 }

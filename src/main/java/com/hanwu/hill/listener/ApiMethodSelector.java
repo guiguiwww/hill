@@ -11,16 +11,17 @@ import com.hanwu.hill.annotation.Api;
 import com.hanwu.hill.annotation.ApiMapping;
 import com.hanwu.hill.annotation.ApiParameter;
 import com.hanwu.hill.api.request.ApiRequest;
-import com.hanwu.hill.exception.ApiException;
 
 import org.apache.commons.lang.StringUtils;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-public class ApiMethodSelector implements ApplicationListener<ContextRefreshedEvent> {
+public class ApiMethodSelector implements
+        ApplicationListener<ContextRefreshedEvent> {
 
-    public static Map<String, ApiMethod<?>> methodMap = new ConcurrentHashMap<>();
+    private static Map<String, Object> methodMap = new ConcurrentHashMap<String, Object>();
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -84,4 +85,16 @@ public class ApiMethodSelector implements ApplicationListener<ContextRefreshedEv
         return new ApiField(required, paramName, fieldName, field.getType());
     }
 
+}
+
+class ApiException extends RuntimeException {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ApiException(String message){
+		super(message);
+	}
 }
