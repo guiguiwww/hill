@@ -1,4 +1,4 @@
-package com.hanwu.hill.api.response;
+package com.hanwu.hill.response;
 
 public interface Response {
 

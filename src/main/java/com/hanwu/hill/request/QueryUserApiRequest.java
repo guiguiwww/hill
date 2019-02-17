@@ -1,4 +1,4 @@
-package com.hanwu.hill.api.request;
+package com.hanwu.hill.request;
 
 public class QueryUserApiRequest extends ApiRequest {
 

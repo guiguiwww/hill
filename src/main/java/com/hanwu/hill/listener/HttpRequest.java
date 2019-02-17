@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
  * @author Stefan
  */
 public class HttpRequest extends HttpServletRequestWrapper {
+
     private byte[] body;
 
     private BufferedReader reader;

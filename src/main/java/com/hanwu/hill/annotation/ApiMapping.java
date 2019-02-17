@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 
 /**
  * ApiMapping annotation
- * author: Stefan
+ *
+ * @author : Stefan
  */
 
 @Retention(RetentionPolicy.RUNTIME)

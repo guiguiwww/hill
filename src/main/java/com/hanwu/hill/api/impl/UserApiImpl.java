@@ -3,8 +3,8 @@ package com.hanwu.hill.api.impl;
 import com.hanwu.hill.annotation.Api;
 import com.hanwu.hill.annotation.ApiMapping;
 import com.hanwu.hill.api.UserApi;
-import com.hanwu.hill.api.request.ApiRequest;
-import com.hanwu.hill.api.response.impl.UserResponse;
+import com.hanwu.hill.request.ApiRequest;
+import com.hanwu.hill.response.impl.UserResponse;
 import com.hanwu.hill.entity.User;
 import com.hanwu.hill.service.UserService;
 

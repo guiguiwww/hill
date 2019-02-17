@@ -1,6 +1,6 @@
 package com.hanwu.hill.api;
 
-import com.hanwu.hill.api.request.ApiRequest;
+import com.hanwu.hill.request.ApiRequest;
 import com.hanwu.hill.entity.User;
 
 public interface UserApi {

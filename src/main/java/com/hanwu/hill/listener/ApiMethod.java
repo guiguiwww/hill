@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import com.hanwu.hill.api.request.ApiRequest;
+import com.hanwu.hill.request.ApiRequest;
 
 
 public class ApiMethod<T extends ApiRequest> implements Serializable {

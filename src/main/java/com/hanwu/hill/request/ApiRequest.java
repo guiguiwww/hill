@@ -1,4 +1,4 @@
-package com.hanwu.hill.api.request;
+package com.hanwu.hill.request;
 
 import java.io.Serializable;
 

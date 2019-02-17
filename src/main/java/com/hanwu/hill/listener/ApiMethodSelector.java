@@ -10,7 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.hanwu.hill.annotation.Api;
 import com.hanwu.hill.annotation.ApiMapping;
 import com.hanwu.hill.annotation.ApiParameter;
-import com.hanwu.hill.api.request.ApiRequest;
+import com.hanwu.hill.request.ApiRequest;
+import com.hanwu.hill.exception.ApiException;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -85,16 +86,4 @@ public class ApiMethodSelector implements
         return new ApiField(required, paramName, fieldName, field.getType());
     }
 
-}
-
-class ApiException extends RuntimeException {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	ApiException(String message){
-		super(message);
-	}
 }

@@ -1,9 +1,10 @@
-package com.hanwu.hill.api.response.impl;
+package com.hanwu.hill.response.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hanwu.hill.api.response.AbstractResponse;
+import com.hanwu.hill.response.AbstractResponse;
 import com.hanwu.hill.entity.User;
 import com.hanwu.hill.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserResponse extends AbstractResponse {
