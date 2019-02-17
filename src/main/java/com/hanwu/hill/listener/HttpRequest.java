@@ -1,6 +1,10 @@
 package com.hanwu.hill.listener;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
@@ -69,7 +73,7 @@ public class HttpRequest extends HttpServletRequestWrapper {
         }
 
         @Override
-        public int read() throws IOException {
+        public int read() {
             return inputStream.read();
         }
 
