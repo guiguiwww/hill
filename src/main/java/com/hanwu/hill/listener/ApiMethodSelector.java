@@ -22,7 +22,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 public class ApiMethodSelector implements
         ApplicationListener<ContextRefreshedEvent> {
 
-    private static Map<String, Object> methodMap = new ConcurrentHashMap<String, Object>();
+    private static final Map<String, Object> METHOD_MAP = new ConcurrentHashMap<>();
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -59,7 +59,7 @@ public class ApiMethodSelector implements
             Class<T> parameterType = (Class<T>) paramList[0];
             List<ApiField> fieldList = getApiRequestFieldsByType(parameterType);
             ApiMethod<T> apiMethod = new ApiMethod<>(action, method, parameterType, fieldList);
-            methodMap.put(action, apiMethod);
+            METHOD_MAP.put(action, apiMethod);
         }
     }
 
