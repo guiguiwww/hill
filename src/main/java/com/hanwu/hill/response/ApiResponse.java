@@ -1,5 +1,7 @@
 package com.hanwu.hill.response;
 
+import java.io.Serializable;
+
 /**
  * ApiResponse.java
  *
@@ -7,7 +9,7 @@ package com.hanwu.hill.response;
  *
  * <p>Api response common class</p>
  */
-public class ApiResponse<T> {
+public class ApiResponse<T> implements Serializable {
 
     private boolean isSuccess = Boolean.FALSE;
 
@@ -21,18 +23,32 @@ public class ApiResponse<T> {
 
     }
 
-    public ApiResponse(Boolean isSuccess) {
+    private ApiResponse(Boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
 
-    public ApiResponse(Boolean isSuccess, Error error) {
+    private ApiResponse(Boolean isSuccess, Error error) {
         this(isSuccess);
         this.error = error;
     }
 
-    public ApiResponse(Boolean isSuccess, T content) {
+    private ApiResponse(Boolean isSuccess, T content) {
         this(isSuccess);
         this.content = content;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <R> ApiResponse triggerSuccess(R content) {
+        return new ApiResponse(Boolean.TRUE, content);
+    }
+
+    public static ApiResponse triggerFailure(Error error) {
+        return new ApiResponse(Boolean.FALSE, error);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static ApiResponse triggerFailure(String message) {
+        return new ApiResponse(Boolean.FALSE, message);
     }
 
     public boolean isSuccess() {
@@ -70,7 +86,7 @@ public class ApiResponse<T> {
     /**
      * Error Common Class
      */
-    class Error {
+    public static class Error {
         private String errorCode;
 
         private String errorMessage;

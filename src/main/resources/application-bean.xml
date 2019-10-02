@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="userResponse" class="com.hanwu.hill.response.impl.UserResponse"></bean>
-    <bean id="ApiMethodSelector" class="com.hanwu.hill.listener.ApiMethodSelector"></bean>
-    <bean id="SpringBeanUtils" class="com.hanwu.hill.utils.SpringBeanUtils"></bean>
+    <bean id="apiMethodSelector" class="com.hanwu.hill.listener.ApiMethodSelector"/>
+    <bean id="springBeanUtils" class="com.hanwu.hill.utils.SpringBeanUtils"/>
 </beans>

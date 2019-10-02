@@ -52,7 +52,7 @@ public class ApiMethodSelector implements
                 throw new ApiException("Parameter error, no ApiRequest init.");
             }
             if (paramList.length > 1) {
-                throw new ApiException("Parameter count error, only api parameter allowed in method.");
+                // TODO throw new ApiException("Parameter count error, only api parameter allowed in method.");
             }
             
             @SuppressWarnings("unchecked")

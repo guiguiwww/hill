@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * Api annotation
  *
- * @author : Stefan
+ * @author Stefan
  */
 
 @Retention(RetentionPolicy.RUNTIME)
