@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.alibaba.fastjson.serializer.PascalNameFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -42,6 +43,8 @@ public class DistributionConfig extends WebMvcConfigurerAdapter {
 
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+
+        fastJsonConfig.setSerializeFilters(new PascalNameFilter());
         fastConverter.setFastJsonConfig(fastJsonConfig);
         converters.add(fastConverter);
     }

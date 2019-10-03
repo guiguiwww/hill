@@ -42,8 +42,8 @@ public class ApiResponse<T> implements Serializable {
         return new ApiResponse(Boolean.TRUE, content);
     }
 
-    public static ApiResponse triggerFailure(Error error) {
-        return new ApiResponse(Boolean.FALSE, error);
+    public static ApiResponse triggerFailure(String errorCode, String errorMessage) {
+        return new ApiResponse(Boolean.FALSE, new Error(errorCode, errorMessage));
     }
 
     @SuppressWarnings("unchecked")
@@ -86,16 +86,16 @@ public class ApiResponse<T> implements Serializable {
     /**
      * Error Common Class
      */
-    public static class Error {
+    static class Error {
         private String errorCode;
 
         private String errorMessage;
 
-        public Error() {
+        private Error() {
 
         }
 
-        public Error(String errorCode, String errorMessage) {
+        private Error(String errorCode, String errorMessage) {
             this.errorCode = errorCode;
             this.errorMessage = errorMessage;
         }
