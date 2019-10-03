@@ -25,7 +25,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @ImportResource(locations = {"classpath:application-bean.xml"})
-@MapperScan("com.hanwu.hill.dao")
+//@MapperScan("com.hanwu.hill.dao")
 public class DistributionConfig extends WebMvcConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(DistributionConfig.class);
